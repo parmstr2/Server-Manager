@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+// App.js
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import ServerStatus from './components/ServerStatus';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/games')
+            .then(response => response.json())
+            .then(data => setGames(data))
+            .catch(error => console.error('Error fetching games:', error));
+    }, []);
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Server Manager</h1>
+            </header>
+            <main>
+                {games.map(game => (
+                    <ServerStatus key={game.name} serverName={game.name} />
+                ))}
+            </main>
+        </div>
+    );
 }
 
 export default App;
