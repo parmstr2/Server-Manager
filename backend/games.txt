@@ -2,4 +2,4 @@ Game        Is Steam?       SteamID or N/A
 minecraft   No              N/A
 ark         Yes             346110
 palworld    Yes             1623730
-Terraria    Yes             10293
+terraria    Yes             10293

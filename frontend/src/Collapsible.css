@@ -1,0 +1,31 @@
+.collapsible-menu {
+    margin-top: 1%;
+  }
+  
+  .menu-title {
+    background-color: #000d71;
+    color: white;
+    padding: 1%;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .menu-title:hover {
+    background-color: #0056b3;
+  }
+  
+  .menu-content {
+    padding: 10px;
+    border: 1px solid #6a6a6a;
+    border-top: none;
+    background-color: rgb(29, 29, 29);
+  }
+  
+  .menu-content h2{
+    padding-top: 0%;
+    margin-top: 0%;
+    border-top: 0%;
+    color: aqua;
+  }

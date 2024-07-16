@@ -8,4 +8,4 @@ $data = @{
     "version" = "1.21"
 } | ConvertTo-Json
 
-Invoke-WebRequest -Uri "http://localhost:5000/new/minecraft/whore" -Method POST -Headers $headers -Body $data
+Invoke-WebRequest -Uri "http://localhost:5000/new/minecraft/test" -Method POST -Headers $headers -Body $data

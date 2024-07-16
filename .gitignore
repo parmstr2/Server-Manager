@@ -1,3 +1,5 @@
 backend/venv
 frontend/node_modules
 Servers
+backend/__pycache__/minecraft_functions.cpython-312.pyc
+backend/headers.ps1

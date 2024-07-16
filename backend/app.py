@@ -2,7 +2,7 @@
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from minecraft_functions import MinecraftQuery, MakeServer
+from minecraft_functions import MinecraftQuery, MakeServer, getVersions
 
 MANAGER_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__name__)))
 
@@ -14,7 +14,7 @@ games = []
 
 for game in gamesFile:
     words = game.split()
-    games.append({"name": words[0], "steam": words[1], "id": words[2]})
+    games.append({"name": words[0], "steam": words[1], "id": words[2], "servers": []})
 
     if not os.path.exists(MANAGER_DIR + f"/Servers/{words[0]}"):
         print(f"Missing {words[0]} directory, creating it now")
@@ -58,9 +58,19 @@ def newMinecraft(server_name):
     minecraftCreator.make()
     return "Server Made"
 
-
 @app.route('/games', methods=['GET'])
-def gamesNames():
+def gamesGames():
+    versions = getVersions().keys()
+    versionList = []
+
+    for version in versions:
+        versionList.append(version)
+
+    for type in games:
+        if(os.path.exists(MANAGER_DIR + "/Servers/" + type["name"])):
+            type["servers"] = os.listdir(MANAGER_DIR + "/Servers/" + type["name"])
+            if type["name"] == "minecraft":
+                type["versions"] = versionList
     return jsonify(games)
 
 if __name__ == '__main__':

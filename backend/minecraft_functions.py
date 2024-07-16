@@ -1,5 +1,14 @@
 import socket, struct, random, json, os, requests
 
+def getVersions():
+    gameVersions = {}
+
+    response = requests.get("https://launchermeta.mojang.com/mc/game/version_manifest.json")
+    for res in response.json()['versions']:
+        gameVersions[res["id"]] = res["url"]
+    
+    return gameVersions
+
 class MinecraftQuery:
     def __init__(self, host, port, timeout=5):
         self.host = host
@@ -131,15 +140,6 @@ class MakeServer:
         managerFile = open(f"{self.dir}/manager.json", "w")
         json.dump(self.data, managerFile)
         managerFile.close()
-
-    def getVersions(self):
-        gameVersions = {}
-
-        response = requests.get("https://launchermeta.mojang.com/mc/game/version_manifest.json")
-        for res in response.json()['versions']:
-            gameVersions[res["id"]] = res["url"]
-        
-        return gameVersions
 
     def fetchServer(self):
         response = requests.get(self.getVersions()[self.data["version"]])
